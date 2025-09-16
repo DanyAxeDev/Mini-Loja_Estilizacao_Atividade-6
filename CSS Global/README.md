@@ -1,12 +1,102 @@
-# React + Vite
+# CSS Global - MiniLoja
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta implementação utiliza **CSS Global** para estilização da aplicação MiniLoja.
 
-Currently, two official plugins are available:
+## 📋 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Estrutura de Estilos
+- **Arquivo único**: `src/styles/global.css` contém todos os estilos da aplicação
+- **Variáveis CSS**: Utiliza CSS Custom Properties (variáveis) para temas claro e escuro
+- **Classes globais**: Todos os componentes compartilham as mesmas classes CSS
 
-## Expanding the ESLint configuration
+### Organização dos Estilos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```css
+/* Variáveis globais para tema claro */
+:root {
+  --color-bg: #f7f7f8;
+  --color-fg: #111114;
+  --color-surface: #ffffff;
+  /* ... outras variáveis */
+}
+
+/* Variáveis para tema escuro */
+[data-theme='dark'] {
+  --color-bg: #0e0f12;
+  --color-fg: #e9e9ef;
+  --color-surface: #15161a;
+  /* ... outras variáveis */
+}
+```
+
+### Componentes e Estilos
+
+#### App.jsx
+- Utiliza classes globais: `page`, `main`
+- Gerencia o tema através do atributo `data-theme` no documento
+
+#### Navbar.jsx
+- Classes utilizadas: `header`, `navbar-content`, `logo`, `navbar-actions`, `themeToggle`, `cart`
+- Toggle de tema com animações CSS
+
+#### ProductCard.jsx
+- Classes utilizadas: `product-card`, `mediaLink`, `media`, `badges`, `badge`, `product-content`, `product-button`
+- Estados do botão: `solid`, `outline`, `ghost`
+- Animação de skeleton para carregamento
+
+## 🎨 Sistema de Temas
+
+### Tema Claro
+- Fundo: `#f7f7f8`
+- Superfície: `#ffffff`
+- Texto: `#111114`
+- Accent: `#5b7cfa`
+
+### Tema Escuro
+- Fundo: `#0e0f12`
+- Superfície: `#15161a`
+- Texto: `#e9e9ef`
+- Accent: `#7aa2ff`
+
+## ⚡ Vantagens
+
+- ✅ **Simplicidade**: Um arquivo CSS para toda a aplicação
+- ✅ **Performance**: CSS carregado uma vez
+- ✅ **Temas dinâmicos**: Fácil troca entre temas claro/escuro
+- ✅ **Manutenibilidade**: Todas as variáveis centralizadas
+
+## ⚠️ Desvantagens
+
+- ❌ **Conflitos de nomes**: Classes podem conflitar entre componentes
+- ❌ **Especificidade**: Pode ser difícil sobrescrever estilos
+- ❌ **Escalabilidade**: Difícil de manter em projetos grandes
+- ❌ **Reutilização**: Classes podem ser usadas incorretamente
+
+## 🚀 Como Executar
+
+```bash
+cd "CSS Global"
+npm install
+npm run dev
+```
+
+## 📁 Estrutura de Arquivos
+
+```
+src/
+├── components/
+│   ├── Navbar.jsx
+│   └── ProductCard.jsx
+├── pages/
+│   └── Catalog.jsx
+├── styles/
+│   └── global.css
+├── App.jsx
+└── main.jsx
+```
+
+## 🔧 Configuração
+
+- **Sem dependências extras** para CSS
+- **Vite** configurado para processar CSS
+- **CSS Custom Properties** para sistema de temas
